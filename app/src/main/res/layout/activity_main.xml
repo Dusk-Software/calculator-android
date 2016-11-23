@@ -19,7 +19,9 @@
         android:layout_toLeftOf="@id/dot"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:id="@+id/zero"
-        android:contentDescription="Zero" />
+        android:contentDescription="Zero"
+        android:fontFamily="casual"
+        andr/>
 
     <Button
         android:text="."
@@ -28,7 +30,8 @@
         android:id="@+id/dot"
         android:layout_toLeftOf="@id/pi"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="pi"
@@ -37,7 +40,8 @@
         android:id="@+id/pi"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="ans"
@@ -46,7 +50,8 @@
         android:id="@+id/ans"
         android:layout_toRightOf="@id/pi"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="="
@@ -55,7 +60,8 @@
         android:id="@+id/equal"
         android:layout_toRightOf="@id/ans"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="3"
@@ -63,7 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/dot"
         android:layout_centerHorizontal="true"
-        android:id="@+id/three" />
+        android:id="@+id/three"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="2"
@@ -71,7 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/zero"
         android:layout_toLeftOf="@+id/three"
-        android:id="@+id/two" />
+        android:id="@+id/two"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="+"
@@ -79,7 +87,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/ans"
         android:layout_toRightOf="@+id/three"
-        android:id="@+id/plus" />
+        android:id="@+id/plus"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="-"
@@ -87,7 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/equal"
         android:layout_toRightOf="@+id/plus"
-        android:id="@+id/minus" />
+        android:id="@+id/minus"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="1"
@@ -95,7 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/zero"
         android:layout_toLeftOf="@+id/two"
-        android:id="@+id/one" />
+        android:id="@+id/one"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="6"
@@ -103,7 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/three"
         android:layout_centerHorizontal="true"
-        android:id="@+id/six" />
+        android:id="@+id/six"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="5"
@@ -119,7 +131,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/plus"
         android:layout_toRightOf="@+id/six"
-        android:id="@+id/times" />
+        android:id="@+id/times"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="/"
@@ -127,7 +140,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/minus"
         android:layout_toRightOf="@+id/times"
-        android:id="@+id/divide" />
+        android:id="@+id/divide"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="4"
@@ -143,7 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/six"
         android:layout_centerHorizontal="true"
-        android:id="@+id/nine" />
+        android:id="@+id/nine"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="8"
@@ -151,7 +166,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/five"
         android:layout_toLeftOf="@+id/nine"
-        android:id="@+id/eight" />
+        android:id="@+id/eight"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="DEL"
@@ -159,7 +175,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/times"
         android:layout_toRightOf="@+id/nine"
-        android:id="@+id/delete" />
+        android:id="@+id/delete"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="AC"
@@ -167,7 +184,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/divide"
         android:layout_toRightOf="@+id/delete"
-        android:id="@+id/clear" />
+        android:id="@+id/clear"
+        android:fontFamily="casual"/>
 
     <Button
         android:text="7"
@@ -175,7 +193,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/four"
         android:layout_toLeftOf="@+id/eight"
-        android:id="@+id/seven" />
+        android:id="@+id/seven"
+        android:fontFamily="casual"/>
 
     <TextView
         android:text="TextView"
