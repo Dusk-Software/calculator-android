@@ -10,18 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dusk.calculator.MainActivity">
 
-
     <Button
-        android:text="0"
+        android:text="pi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/pi"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/dot"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:id="@+id/zero"
-        android:contentDescription="Zero"
-        android:fontFamily="casual"
-        andr/>
+        android:fontFamily="casual"/>
 
     <Button
         android:text="."
@@ -29,16 +26,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/dot"
         android:layout_toLeftOf="@id/pi"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:fontFamily="casual"/>
-
-    <Button
-        android:text="pi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pi"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"/>
@@ -64,13 +51,28 @@
         android:fontFamily="casual"/>
 
     <Button
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/dot"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:id="@+id/zero"
+        android:contentDescription="Zero"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        />
+
+
+    <Button
         android:text="3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/dot"
         android:layout_centerHorizontal="true"
         android:id="@+id/three"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="2"
@@ -79,25 +81,8 @@
         android:layout_above="@+id/zero"
         android:layout_toLeftOf="@+id/three"
         android:id="@+id/two"
-        android:fontFamily="casual"/>
-
-    <Button
-        android:text="+"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/ans"
-        android:layout_toRightOf="@+id/three"
-        android:id="@+id/plus"
-        android:fontFamily="casual"/>
-
-    <Button
-        android:text="-"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/equal"
-        android:layout_toRightOf="@+id/plus"
-        android:id="@+id/minus"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="1"
@@ -106,7 +91,8 @@
         android:layout_above="@id/zero"
         android:layout_toLeftOf="@+id/two"
         android:id="@+id/one"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="6"
@@ -115,7 +101,8 @@
         android:layout_above="@+id/three"
         android:layout_centerHorizontal="true"
         android:id="@+id/six"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="5"
@@ -124,25 +111,8 @@
         android:layout_above="@+id/two"
         android:layout_toLeftOf="@+id/six"
         android:id="@+id/five"
-        android:fontFamily="casual"/>
-
-    <Button
-        android:text="*"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/plus"
-        android:layout_toRightOf="@+id/six"
-        android:id="@+id/times"
-        android:fontFamily="casual"/>
-
-    <Button
-        android:text="/"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/minus"
-        android:layout_toRightOf="@+id/times"
-        android:id="@+id/divide"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="4"
@@ -151,7 +121,8 @@
         android:layout_above="@id/one"
         android:layout_toLeftOf="@+id/five"
         android:id="@+id/four"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="9"
@@ -161,7 +132,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/nine"
         android:fontFamily="casual"
-        />
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="8"
@@ -170,7 +141,50 @@
         android:layout_above="@+id/five"
         android:layout_toLeftOf="@+id/nine"
         android:id="@+id/eight"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
+
+    <Button
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ans"
+        android:layout_toRightOf="@+id/three"
+        android:id="@+id/plus"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"/>
+
+    <Button
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/equal"
+        android:layout_toRightOf="@+id/plus"
+        android:id="@+id/minus"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"/>
+
+    <Button
+        android:text="*"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/plus"
+        android:layout_toRightOf="@+id/six"
+        android:id="@+id/times"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"/>
+
+    <Button
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/minus"
+        android:layout_toRightOf="@+id/times"
+        android:id="@+id/divide"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"/>
+
+
 
     <Button
         android:text="DEL"
@@ -200,7 +214,6 @@
         android:fontFamily="casual"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"

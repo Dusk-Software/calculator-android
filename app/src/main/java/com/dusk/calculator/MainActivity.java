@@ -10,14 +10,16 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView numericInput;
+    EditText numericInput;
+    TextView Equation;
     Button pressedButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        numericInput = (TextView) findViewById(R.id.textInput);
+        numericInput = (EditText) findViewById(R.id.editText2);
+        Equation = (TextView) findViewById(R.id.textView);
     }
 
     public void NumericButtonOnClickListener(View v) {
@@ -25,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         numericInput.append(pressedButton.getText());
     }
 
+    public void OperationButtonOnClickListener(View v){
+        pressedButton = (Button) findViewById(v.getId());
+        Equation.append(numericInput.getText());
+        Equation.append(" ");
+        Equation.append(pressedButton.getText());
+        numericInput.setText(" ");
+    }
 
 }
 
