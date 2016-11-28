@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         numericInput = (EditText) findViewById(R.id.editText2);
         Equation = (TextView) findViewById(R.id.textView);
     }
-
     public void NumericButtonOnClickListener(View v) {
         pressedButton = (Button) findViewById(v.getId());
         numericInput.append(pressedButton.getText());
@@ -35,5 +34,10 @@ public class MainActivity extends AppCompatActivity {
         numericInput.setText(" ");
     }
 
+    public void ANSButtonOnClickListener(View v){
+        Equation.append(numericInput.getText());
+        Parse test = new Parse(Equation.getText().toString());
+        Equation.setText(test.calculate());
+    }
 }
 

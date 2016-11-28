@@ -38,7 +38,8 @@
         android:layout_toRightOf="@id/pi"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="ANSButtonOnClickListener"/>
 
     <Button
         android:text="="
@@ -211,7 +212,8 @@
         android:layout_above="@id/four"
         android:layout_toLeftOf="@+id/eight"
         android:id="@+id/seven"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <TextView
         android:layout_width="wrap_content"
