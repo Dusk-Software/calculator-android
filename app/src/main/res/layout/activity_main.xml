@@ -39,7 +39,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
-        android:onClick="ANSButtonOnClickListener"/>
+        />
 
     <Button
         android:text="="
@@ -49,7 +49,8 @@
         android:layout_toRightOf="@id/ans"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="ANSButtonOnClickListener"/>
 
     <Button
         android:text="0"
@@ -194,7 +195,8 @@
         android:layout_above="@id/times"
         android:layout_toRightOf="@+id/nine"
         android:id="@+id/delete"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="DELOnClickListener"/>
 
     <Button
         android:text="AC"
@@ -203,7 +205,8 @@
         android:layout_above="@id/divide"
         android:layout_toRightOf="@+id/delete"
         android:id="@+id/clear"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="ACButtonOnClickListener"/>
 
     <Button
         android:text="7"

@@ -15,26 +15,86 @@ public class Parse {
     public  Parse(String input){
         Equation = input;
         removeBlackSpace();
-        FindNextOperator();
-        //return NumberStack.pop();
     }
 
     public String calculate(){
-        //return Equation;
-        return NumberStack.pop().toString();
+        if(isValidEquation()){
+
+            FindNextOperator();
+            return NumberStack.pop().toString();
+        }
+        return "Invalid Entry";
     }
+
+    private boolean isValidEquation(){
+        if(inValidBrace())
+            return false;
+        if(inValidOperation())
+            return false;
+        if(inValidSyntax())
+            return false;
+        return true;
+    }
+
+    private boolean inValidBrace(){
+        int brace = 0;
+        for(int x = 0; x < Equation.length();x++){
+            if(Equation.charAt(x) == '(')
+                brace++;
+            if(Equation.charAt(x) == ')')
+                brace--;
+            if(brace <0)
+                return true;
+        }
+        if(brace !=0)
+            return true;
+
+        return false;
+    }
+
+    private boolean inValidOperation(){
+        char NextChar;
+        for(int x = 0; x < Equation.length()-1;x++){
+            if(!(Character.isDigit(Equation.charAt(x)) || Equation.charAt(x)== '.' || Equation.charAt(x)==')')){
+                NextChar = Equation.charAt(x+1);
+                //protection against (*6) & (9 + / 4) etc
+                if(!(Character.isDigit(NextChar) || NextChar == '+' || NextChar == '-' || NextChar =='(')){
+                    System.out.println("invalid Operation on " + Equation.charAt(x) + NextChar);
+                    return true;
+                }
+            }
+
+
+
+        }
+
+        return false;
+    }
+
+    private boolean inValidSyntax(){
+        for(int x = 0; x < Equation.length()-1;x++){
+            if(!(Character.isDigit(Equation.charAt(x)) || Equation.charAt(x)== '.'
+                    || Equation.charAt(x)==')' || Equation.charAt(x)== '(' || Equation.charAt(x) == '/'
+                    || Equation.charAt(x)== '*' || Equation.charAt(x)== '+' || Equation.charAt(x)== '-'
+                    || Equation.charAt(x)== '^')){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void FindNextOperator(){
-        //int index=0;
 
         do{
             indexValue = Equation.charAt(index);
-            if(!(Character.isDigit(indexValue))){
+            if(!(Character.isDigit(indexValue) || indexValue =='.')){
                 if(indexValue == '('){
                     FoundOpenBrace();
                 }else if(indexValue == ')' ){
                     FoundCloseBrace();
                 }else{
-                    FoundOperator();
+                    if(index != StopPoint || Equation.charAt(index-1) == ')')
+                        FoundOperator();
                 }
             }else {
                 if(index == Equation.length()-1 && !OperatorStack.isEmpty()){
@@ -72,8 +132,13 @@ public class Parse {
 
     private void FoundCloseBrace(){
         String number = Equation.substring(StopPoint, index);
+        double ndNumber;
         // double stNumber = NumberStack.pop();
-        double ndNumber = Double.parseDouble(number);
+        if(!Character.isDigit(Equation.charAt(index-1))){
+            ndNumber = NumberStack.pop();
+        }else
+            ndNumber = Double.parseDouble(number);
+
         Operator Operation = OperatorStack.pop();
 
         while(!Operation.Equals("(")){

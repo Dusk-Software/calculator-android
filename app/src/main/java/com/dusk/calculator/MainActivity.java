@@ -2,6 +2,7 @@ package com.dusk.calculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
         Equation.append(numericInput.getText());
         Parse test = new Parse(Equation.getText().toString());
         Equation.setText(test.calculate());
+    }
+
+    public void ACButtonOnClickListener(View v){
+        Equation.setText("");
+    }
+
+    public void DELOnClickListener(View v){
+        String NewInput = numericInput.getText().toString();
+        if(NewInput.length() >0){
+            NewInput = NewInput.subSequence(0, NewInput.length()-1).toString();
+            numericInput.setText(NewInput);
+        }
     }
 }
 
