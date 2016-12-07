@@ -20,7 +20,8 @@
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
         android:onClick="NumericButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Small"
+        />
 
     <Button
         android:text="."
@@ -43,7 +44,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="="
@@ -55,7 +56,7 @@
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
         android:onClick="ANSButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="0"
@@ -168,7 +169,7 @@
         android:id="@+id/plus"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="-"
@@ -179,7 +180,7 @@
         android:id="@+id/minus"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="*"
@@ -190,7 +191,7 @@
         android:id="@+id/times"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="/"
@@ -201,20 +202,8 @@
         android:id="@+id/divide"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
-
-
-    <Button
-        android:text="DEL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/times"
-        android:layout_toRightOf="@+id/nine"
-        android:id="@+id/delete"
-        android:fontFamily="casual"
-        android:onClick="DELOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="AC"
@@ -225,7 +214,8 @@
         android:id="@+id/clear"
         android:fontFamily="casual"
         android:onClick="ACButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Small"/>
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_below="@+id/Display" />
 
     <Button
         android:text="7"
@@ -238,27 +228,71 @@
         android:onClick="NumericButtonOnClickListener"
         style="@style/Widget.AppCompat.Button.Small"/>
 
+    <Button
+        android:text=")"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/percent"
+        android:layout_toLeftOf="@+id/four"
+        android:layout_toStartOf="@+id/four"
+        android:id="@+id/C.B."
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <Button
+        android:text="%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/plusORminus"
+        android:layout_toLeftOf="@+id/one"
+        android:layout_toStartOf="@+id/one"
+        android:id="@+id/percent"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <Button
+        android:text="+ / -"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plusORminus"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignBaseline="@+id/zero"
+        android:layout_alignBottom="@+id/zero"
+        android:layout_toLeftOf="@+id/zero"
+        android:layout_toStartOf="@+id/zero" />
+
+    <Button
+        android:text="("
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/O.B."
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignBottom="@+id/seven"
+        android:layout_toLeftOf="@+id/seven"
+        android:layout_alignLeft="@+id/C.B."
+        android:layout_alignStart="@+id/C.B." />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/Display"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_above="@+id/nine"
-        android:layout_alignLeft="@+id/seven"
-        android:layout_alignStart="@+id/seven"
+        android:layout_above="@id/nine"
+        android:background="@drawable/border"
+        android:layout_alignLeft="@+id/O.B."
+        android:layout_alignStart="@+id/O.B."
         android:layout_alignRight="@+id/clear"
         android:layout_alignEnd="@+id/clear" />
+
+    <Button
+        android:text="DEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete"
+        android:fontFamily="casual"
+        android:onClick="DELOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignBaseline="@+id/nine"
+        android:layout_alignBottom="@+id/nine"
+        android:layout_toRightOf="@+id/nine" />
 
 </RelativeLayout>
