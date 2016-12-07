@@ -11,7 +11,7 @@
     tools:context="com.dusk.calculator.MainActivity">
 
     <Button
-        android:text="pi"
+        android:text="π"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pi"
@@ -28,7 +28,8 @@
         android:layout_toLeftOf="@id/pi"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
 
     <Button
         android:text="ans"

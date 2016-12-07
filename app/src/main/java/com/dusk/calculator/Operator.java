@@ -5,57 +5,56 @@ package com.dusk.calculator;
  */
 
 public class Operator {
-    private String Symbol;
-    private int priotity;
-    private int numberOfOperans = 2;
-    private double value1, value2;
+    private String symbol;
+    private int priority;
+    private int numberOfOperands = 2;
 
 
     public Operator (String input){
-        Symbol = input;
+        symbol = input;
 
-        if(Symbol.equals("+")){
-            priotity = 1;
-        } else if (Symbol.equals("-")) {
-            priotity = 1;
-        }else if(Symbol.equals("*")){
-            priotity = 2;
-        }else if(Symbol.equals("/")){
-            priotity = 3;
-        } else if (Symbol.equals("^")) {
-            priotity = 4;
-        } else if (Symbol.equals("% of")){
-            priotity = 5;
+        if(symbol.equals("+")){
+            priority = 1;
+        } else if (symbol.equals("-")) {
+            priority = 1;
+        }else if(symbol.equals("*")){
+            priority = 2;
+        }else if(symbol.equals("/")){
+            priority = 3;
+        } else if (symbol.equals("^")) {
+            priority = 4;
+        } else if (symbol.equals("% of")){
+            priority = 5;
         }
 
     }
 
-    public boolean HigherPriority(Operator input){
-        if(priotity > input.priotity){
+    public boolean isHigherPriority(Operator input){
+        if(priority > input.priority){
             return true;
         }
         return false;
     }
 
     public boolean Equals(String input){
-        if(Symbol.equals(input))
+        if(symbol.equals(input))
             return true;
 
         return false;
     }
 
-    public double proformOperation(double stNumber, double ndNumber){
-        if(Symbol.equals("+")){
+    public double performOperation(double stNumber, double ndNumber){
+        if(symbol.equals("+")){
             return stNumber + ndNumber;
-        } else if (Symbol.equals("-")) {
+        } else if (symbol.equals("-")) {
             return stNumber - ndNumber;
-        }else if(Symbol.equals("*")){
+        }else if(symbol.equals("*")){
             return stNumber * ndNumber;
-        }else if(Symbol.equals("/")){
+        }else if(symbol.equals("/")){
             return stNumber / ndNumber;
-        } else if (Symbol.equals("^")) {
+        } else if (symbol.equals("^")) {
             return Math.pow(stNumber, ndNumber);
-        }else if (Symbol.equals("% of")){
+        }else if (symbol.equals("% of")){
             return  (stNumber /100) * ndNumber;
         }
         return 0;

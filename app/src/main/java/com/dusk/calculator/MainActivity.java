@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         numericInput.append(pressedButton.getText());
     }
 
+    public void SymbolButtonOnClickListener(View v) {
+        pressedButton = (Button) findViewById(v.getId());
+        numericInput.append(pressedButton.getText());
+    }
+
     public void OperationButtonOnClickListener(View v){
         pressedButton = (Button) findViewById(v.getId());
         Equation.append(numericInput.getText());
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void DELOnClickListener(View v){
         String NewInput = numericInput.getText().toString();
-        if(NewInput.length() >0){
+        if(NewInput.length() > 0){
             NewInput = NewInput.subSequence(0, NewInput.length()-1).toString();
             numericInput.setText(NewInput);
         }
