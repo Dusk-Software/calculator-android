@@ -18,7 +18,9 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:fontFamily="casual"/>
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="."
@@ -29,7 +31,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="ans"
@@ -40,7 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
-        />
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="="
@@ -51,7 +54,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="casual"
-        android:onClick="ANSButtonOnClickListener"/>
+        android:onClick="ANSButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="0"
@@ -64,7 +68,7 @@
         android:contentDescription="Zero"
         android:fontFamily="casual"
         android:onClick="NumericButtonOnClickListener"
-        />
+        style="@style/Widget.AppCompat.Button.Small"/>
 
 
     <Button
@@ -75,7 +79,8 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/three"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="2"
@@ -85,7 +90,8 @@
         android:layout_toLeftOf="@+id/three"
         android:id="@+id/two"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="1"
@@ -95,7 +101,8 @@
         android:layout_toLeftOf="@+id/two"
         android:id="@+id/one"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="6"
@@ -105,7 +112,8 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/six"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="5"
@@ -115,7 +123,8 @@
         android:layout_toLeftOf="@+id/six"
         android:id="@+id/five"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="4"
@@ -125,7 +134,8 @@
         android:layout_toLeftOf="@+id/five"
         android:id="@+id/four"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="9"
@@ -135,7 +145,8 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/nine"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="8"
@@ -145,7 +156,8 @@
         android:layout_toLeftOf="@+id/nine"
         android:id="@+id/eight"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="+"
@@ -155,7 +167,8 @@
         android:layout_toRightOf="@+id/three"
         android:id="@+id/plus"
         android:fontFamily="casual"
-        android:onClick="OperationButtonOnClickListener"/>
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="-"
@@ -165,7 +178,8 @@
         android:layout_toRightOf="@+id/plus"
         android:id="@+id/minus"
         android:fontFamily="casual"
-        android:onClick="OperationButtonOnClickListener"/>
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="*"
@@ -175,7 +189,8 @@
         android:layout_toRightOf="@+id/six"
         android:id="@+id/times"
         android:fontFamily="casual"
-        android:onClick="OperationButtonOnClickListener"/>
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="/"
@@ -185,7 +200,8 @@
         android:layout_toRightOf="@+id/times"
         android:id="@+id/divide"
         android:fontFamily="casual"
-        android:onClick="OperationButtonOnClickListener"/>
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
 
 
@@ -197,7 +213,8 @@
         android:layout_toRightOf="@+id/nine"
         android:id="@+id/delete"
         android:fontFamily="casual"
-        android:onClick="DELOnClickListener"/>
+        android:onClick="DELOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="AC"
@@ -207,7 +224,8 @@
         android:layout_toRightOf="@+id/delete"
         android:id="@+id/clear"
         android:fontFamily="casual"
-        android:onClick="ACButtonOnClickListener"/>
+        android:onClick="ACButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <Button
         android:text="7"
@@ -217,7 +235,8 @@
         android:layout_toLeftOf="@+id/eight"
         android:id="@+id/seven"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"/>
+        android:onClick="NumericButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Small"/>
 
     <TextView
         android:layout_width="wrap_content"

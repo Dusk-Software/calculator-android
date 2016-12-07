@@ -21,7 +21,7 @@ public class Parse {
         if(isValidEquation()){
             FindNextOperator();
             return number_stack.pop().toString();
-        }
+         }
         return "Invalid Entry";
     }
 
@@ -56,10 +56,10 @@ public class Parse {
 
         for(int x = 0; x < equation.length()-1;x++){
 
-            if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.' || equation.charAt(x)==')' ||equation.charAt(x)=='π')){
+            if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.' || equation.charAt(x)==')' || equation.charAt(x)=='π')){
                 NextChar = equation.charAt(x+1);
                 //protection against (*6) & (9 + / 4) etc
-                if(!(Character.isDigit(NextChar) || NextChar == '+' || NextChar == '-' || NextChar =='(')){
+                if( NextChar != '+' && NextChar != '-' && NextChar !='(' && NextChar != 'π' && !(Character.isDigit(NextChar))){
                     System.out.println("invalid Operation on " + equation.charAt(x) + NextChar);
                     return true;
                 }
@@ -77,7 +77,8 @@ public class Parse {
             if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.'
                     || equation.charAt(x)==')' || equation.charAt(x)== '(' || equation.charAt(x) == '/'
                     || equation.charAt(x)== '*' || equation.charAt(x)== '+' || equation.charAt(x)== '-'
-                    || equation.charAt(x)== '^')){
+                    || equation.charAt(x)== '^'|| equation.charAt(x) == 'π')){
+                System.out.println("invalid Syntax on " + equation.charAt(x));
                 return true;
             }
         }
@@ -88,7 +89,7 @@ public class Parse {
 
         do{
             index_value = equation.charAt(index);
-            if(!(Character.isDigit(index_value) || index_value =='.')){
+            if(!(Character.isDigit(index_value) || index_value =='.' || index_value == 'π')){
                 if(index_value == '('){
                     FoundOpenBrace();
                 }else if(index_value == ')' ){
@@ -100,7 +101,7 @@ public class Parse {
             }else {
                 if(index == equation.length()-1 && !operator_stack.isEmpty()){
                     String number = equation.substring(stop_point, index+1);
-                    number_stack.push(Double.parseDouble(number));
+                    number_stack.push(parseDouble(number));
                     while(!operator_stack.isEmpty()){
                         double ndNumber = number_stack.pop();
                         double stNumber = number_stack.pop();
@@ -124,7 +125,7 @@ public class Parse {
             //for 20 (78 + 9)
         }else if(Character.isDigit(equation.charAt(index-1))){
             String number = equation.substring(stop_point, index);
-            number_stack.push(Double.parseDouble(number));
+            number_stack.push(parseDouble(number));
             operator_stack.push(new Operator("*"));
             operator_stack.push(new Operator(Character.toString(index_value)));
         }
@@ -138,7 +139,7 @@ public class Parse {
         if(!Character.isDigit(equation.charAt(index-1))){
             ndNumber = number_stack.pop();
         }else
-            ndNumber = Double.parseDouble(number);
+            ndNumber = parseDouble(number);
 
         Operator Operation = operator_stack.pop();
 
@@ -152,30 +153,43 @@ public class Parse {
     }
 
     public void FoundOperator(){
-        Operator Operation = new Operator(Character.toString(index_value));
+
+
         String number = equation.substring(stop_point, index);
+        if(index_value == '-' && equation.charAt(index+1) != '('){
+            index_value = '+';
+            stop_point = index;
+        }else
+            stop_point = index+1;
+
+        Operator Operation = new Operator(Character.toString(index_value));
+
         System.out.println(index_value);
         if(operator_stack.isEmpty() || Operation.isHigherPriority(operator_stack.top())){
-            if(Character.isDigit(equation.charAt(index-1))){
+            if(Character.isDigit(equation.charAt(index-1)) || equation.charAt(index-1)=='π'){
                 operator_stack.push(Operation);
-                number_stack.push(Double.parseDouble(number));
-            }else{
-                if(equation.charAt(index-1)=='π') {
-                    number_stack.push(Math.PI);
-                }
+                number_stack.push(parseDouble(number));
+                System.out.println(number_stack.top().toString());
+            }else
                 operator_stack.push(Operation);
-            }
-
         }else{
 
             double stNumber = number_stack.pop();
-            double ndNumber = Double.parseDouble(number);
+            double ndNumber = parseDouble(number);
             Operator preOperation = operator_stack.pop();
 
             number_stack.push(preOperation.performOperation(stNumber,ndNumber));
+            while(!operator_stack.isEmpty() && operator_stack.top().isHigherPriority(Operation)){
+                ndNumber = number_stack.pop();
+                stNumber = number_stack.pop();
+                preOperation = operator_stack.pop();
+
+                number_stack.push(preOperation.performOperation(stNumber,ndNumber));
+            }
             operator_stack.push(Operation);
         }
-        stop_point = index+1;
+
+       // stop_point = index+1;
     }
 
     private void removeBlackSpace(){
@@ -186,7 +200,19 @@ public class Parse {
                 equation = equation.substring(0,index) + equation.substring(index+1,equation.length());
                 index--;
             }
+            if(index+1 != equation.length() && equation.charAt(index)=='+' && (equation.charAt(index+1)=='-' || equation.charAt(index+1)=='+')){
+                equation = equation.substring(0,index) + equation.substring(index+1,equation.length());
+                index--;
+            }
+
             index++;
         }while(index != equation.length());
+    }
+
+    private double parseDouble(String input){
+        if (input.equals("π")){
+            return Math.PI;
+        }
+        return Double.parseDouble(input);
     }
 }

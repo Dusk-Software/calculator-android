@@ -42,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void ANSButtonOnClickListener(View v){
         Equation.append(numericInput.getText());
+        numericInput.setText("");
         Parse test = new Parse(Equation.getText().toString());
         Equation.setText(test.calculate());
     }
 
     public void ACButtonOnClickListener(View v){
+        numericInput.setText("");
         Equation.setText("");
     }
 

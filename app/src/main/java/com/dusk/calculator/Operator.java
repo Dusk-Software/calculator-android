@@ -16,7 +16,7 @@ public class Operator {
         if(symbol.equals("+")){
             priority = 1;
         } else if (symbol.equals("-")) {
-            priority = 1;
+            priority = 2;
         }else if(symbol.equals("*")){
             priority = 2;
         }else if(symbol.equals("/")){
