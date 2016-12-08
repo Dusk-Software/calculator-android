@@ -300,7 +300,6 @@
         android:id="@+id/DEGorRAD"
         android:textOff="rad"
         android:textOn="deg"
-        android:checked="false"
         android:layout_alignTop="@+id/O.B."
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

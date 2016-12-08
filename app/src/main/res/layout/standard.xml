@@ -17,18 +17,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/equal"
-        android:layout_toLeftOf="@id/zero"
-        android:layout_below="@id/percent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
         android:fontFamily="casual"
         android:onClick="ANSButtonOnClickListener"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/one"
+        android:layout_toStartOf="@+id/one" />
 
     <Button
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/dot"
+        android:layout_toRightOf="@id/equal"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:id="@+id/zero"
         android:contentDescription="Zero"
@@ -63,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/eight"
-        android:layout_toRightOf="@id/delete"
+        android:layout_toRightOf="@id/four"
         android:id="@+id/divide"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
@@ -119,20 +123,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/four"
-        android:layout_toStartOf="@+id/four"
         android:id="@+id/C.B."
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_above="@+id/one" />
+        android:layout_above="@+id/one"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="%"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/one"
-        android:layout_toStartOf="@+id/one"
         android:id="@+id/percent"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_above="@+id/zero" />
+        android:layout_below="@id/C.B."
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="+ / -"
@@ -143,7 +149,7 @@
         android:layout_toLeftOf="@id/times"
         android:layout_toStartOf="@+id/times"
         android:layout_alignBottom="@+id/times"
-        android:layout_above="@id/delete"
+        android:layout_above="@id/seven"
         />
 
     <Button
@@ -236,7 +242,9 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_above="@+id/eight"
         android:layout_alignLeft="@+id/O.B."
-        android:layout_alignStart="@+id/O.B." />
+        android:layout_alignStart="@+id/O.B."
+        android:layout_toLeftOf="@+id/seven"
+        android:layout_toStartOf="@+id/seven" />
 
     <Button
         android:text="6"
@@ -283,7 +291,9 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_above="@+id/delete"
         android:layout_alignLeft="@+id/power"
-        android:layout_alignStart="@+id/power" />
+        android:layout_alignStart="@+id/power"
+        android:layout_toLeftOf="@+id/plusORminus"
+        android:layout_toStartOf="@+id/plusORminus" />
 
     <Button
         android:text="DEL"

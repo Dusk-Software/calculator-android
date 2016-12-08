@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText numericInput;
+    TextView numericInput;
     TextView Equation;
     Button pressedButton;
 
@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.standard);
-        numericInput = (EditText) findViewById(R.id.editText2);
-        Equation = (TextView) findViewById(R.id.Display);
+        numericInput = (TextView) findViewById(R.id.Display);
+        Equation = (TextView) findViewById(R.id.history);
     }
     public void NumericButtonOnClickListener(View v) {
         pressedButton = (Button) findViewById(v.getId());
