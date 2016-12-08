@@ -38,4 +38,7 @@ public class Stack<T> {
 
         return false;
     }
+    public int getsize(){
+        return size;
+    }
 }
