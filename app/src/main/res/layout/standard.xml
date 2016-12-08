@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dusk.calculator.MainActivity">
+    tools:context="com.dusk.calculator.MainActivity"
+    android:theme="@style/MainTheme">
 
 
     <Button
@@ -32,7 +33,7 @@
         android:id="@+id/zero"
         android:contentDescription="Zero"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"
+        android:onClick="NumericButtonOnClickListener"/>
 
 
     <Button
@@ -43,7 +44,7 @@
         android:layout_toLeftOf="@+id/two"
         android:id="@+id/one"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"
+        android:onClick="NumericButtonOnClickListener"/>
 
 
     <Button
@@ -54,7 +55,7 @@
         android:layout_toLeftOf="@+id/five"
         android:id="@+id/four"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"
+        android:onClick="NumericButtonOnClickListener"/>
 
 
     <Button
@@ -63,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/eight"
         android:layout_toRightOf="@id/delete"
-        android:id="@+id/plus"
+        android:id="@+id/divide"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
         style="@style/Widget.AppCompat.Button.Colored"/>
@@ -73,8 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/nine"
-        android:layout_toRightOf="@+id/plus"
-        android:id="@+id/minus"
+        android:layout_toRightOf="@+id/divide"
+        android:id="@+id/plus"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
         style="@style/Widget.AppCompat.Button.Colored"/>
@@ -83,8 +84,8 @@
         android:text="*"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/plus"
-        android:layout_toLeftOf="@id/divide"
+        android:layout_above="@id/divide"
+        android:layout_toLeftOf="@id/multiply"
         android:id="@+id/times"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
@@ -94,9 +95,9 @@
         android:text="/"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/minus"
+        android:layout_above="@id/plus"
         android:layout_alignParentRight="true"
-        android:id="@+id/divide"
+        android:id="@+id/multiply"
         android:fontFamily="casual"
         android:onClick="OperationButtonOnClickListener"
         style="@style/Widget.AppCompat.Button.Colored"/>
@@ -110,7 +111,7 @@
         android:layout_toLeftOf="@+id/eight"
         android:id="@+id/seven"
         android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"
+        android:onClick="NumericButtonOnClickListener"/>
         
 
     <Button
@@ -166,7 +167,9 @@
         android:background="@drawable/border"
         android:layout_alignLeft="@+id/Display"
         android:layout_alignStart="@+id/Display"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@+id/toolbar"
+        android:keepScreenOn="false"
+        android:isScrollContainer="false" />
 
     <TextView
         android:layout_width="match_parent"
@@ -188,18 +191,6 @@
         android:layout_alignBaseline="@+id/percent"
         android:layout_alignBottom="@+id/percent"
         android:layout_alignParentRight="true" />
-
-    <Button
-        android:text="π"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pi"
-        android:fontFamily="casual"
-        android:onClick="NumericButtonOnClickListener"
-        android:layout_alignBaseline="@+id/zero"
-        android:layout_alignBottom="@+id/zero"
-        android:layout_alignRight="@+id/minus"
-        android:layout_alignEnd="@+id/minus" />
 
     <Button
         android:text="8"
@@ -322,5 +313,16 @@
         android:layout_alignLeft="@+id/history"
         android:layout_alignStart="@+id/history"
         android:animateLayoutChanges="true"/>
+
+    <Button
+        android:text="π"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pi"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_below="@+id/two"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

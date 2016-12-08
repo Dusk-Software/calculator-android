@@ -15,4 +15,10 @@
         <item name="android:colorForeground">@android:color/holo_blue_dark</item>
     </style>
 
+    <style name="ScientificTheme" parent="AppTheme" >
+        <item name="colorPrimary">@android:color/holo_green_dark</item>
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+        <item name="android:colorForeground">@android:color/holo_green_dark</item>
+    </style>
+
 </resources>
