@@ -10,6 +10,7 @@ public class Operator {
     private int numberOfOperands = 2;
 
 
+    public Operator(){}
     public Operator (String input){
         symbol = input;
 
@@ -27,6 +28,10 @@ public class Operator {
             priority = 5;
         }
 
+    }
+
+    public String toString(){
+        return symbol;
     }
 
     public boolean isHigherPriority(Operator input){
@@ -54,7 +59,7 @@ public class Operator {
             return stNumber / ndNumber;
         } else if (symbol.equals("^")) {
             return Math.pow(stNumber, ndNumber);
-        }else if (symbol.equals("% of")){
+        }else if (symbol.equals("%of")){
             return  (stNumber /100) * ndNumber;
         }
         return 0;
