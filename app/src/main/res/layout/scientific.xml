@@ -167,15 +167,6 @@
         android:id="@+id/ans" />
 
     <Button
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/ans"
-        android:layout_toEndOf="@+id/ans"
-        android:id="@+id/zero" />
-
-    <Button
         android:text="="
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -257,8 +248,8 @@
         android:id="@+id/cosh"
         android:layout_alignBaseline="@+id/tanh"
         android:layout_alignBottom="@+id/tanh"
-        android:layout_toRightOf="@+id/toggleButton"
-        android:layout_toEndOf="@+id/toggleButton"
+        android:layout_toRightOf="@+id/DEGorRAD"
+        android:layout_toEndOf="@+id/DEGorRAD"
         style="@style/Widget.AppCompat.Button.Colored" />
 
     <Button
@@ -278,8 +269,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/log"
-        android:layout_toRightOf="@+id/toggleButton"
-        android:layout_toEndOf="@+id/toggleButton"
+        android:layout_toRightOf="@+id/DEGorRAD"
+        android:layout_toEndOf="@+id/DEGorRAD"
         android:id="@+id/O.B." />
 
     <Button
@@ -306,7 +297,7 @@
         android:text="ToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButton"
+        android:id="@+id/DEGorRAD"
         android:textOff="rad"
         android:textOn="deg"
         android:checked="false"
@@ -341,13 +332,14 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/toggleButton"
+        android:layout_above="@+id/DEGorRAD"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView5"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:background="@drawable/border"/>
 
     <TextView
         android:text="TextView"
@@ -360,6 +352,16 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/textView5"
         android:layout_alignParentTop="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:background="@drawable/border"/>
+
+    <Button
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zero"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/ans"
+        android:layout_toEndOf="@+id/ans" />
 
 </RelativeLayout>
