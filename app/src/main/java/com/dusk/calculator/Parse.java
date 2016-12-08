@@ -5,27 +5,34 @@ package com.dusk.calculator;
  */
 
 public class Parse {
-    private String equation;
-    private int stop_point = 0;
-    private int index = 0;
-    private char index_value;
-    private Stack<Double> number_stack = new Stack<Double>();
-    private Stack<Operator> operator_stack = new Stack<Operator>();
+    protected String equation;
+    protected int stop_point = 0;
+    protected int index = 0;
+    protected char index_value;
+    private String name;
+    protected boolean Computed_Function = false;
+    protected Function Func;
+    protected Stack<Double> number_stack = new Stack<Double>();
+    protected Stack<Operator> operator_stack = new Stack<Operator>();
 
     public  Parse(String input){
         equation = input;
         removeBlackSpace();
     }
 
-    public String calculate(){
-        if(isValidEquation()){
-            FindNextOperator();
-            return number_stack.pop().toString();
-         }
-        return "Invalid Entry";
+    public Parse(){
+
     }
 
-    private boolean isValidEquation(){
+    public String calculate(){
+       // if(isValidEquation()){
+            ScanIndex();
+            return number_stack.pop().toString();
+         //}
+        //return "Invalid Entry";
+    }
+
+    protected boolean isValidEquation(){
         if(InvalidBrace())
             return false;
         if(InvalidOperation())
@@ -35,7 +42,7 @@ public class Parse {
         return true;
     }
 
-    private boolean InvalidBrace(){
+    protected boolean InvalidBrace(){
         int brace = 0;
         for(int x = 0; x < equation.length();x++){
             if(equation.charAt(x) == '(')
@@ -51,7 +58,7 @@ public class Parse {
         return false;
     }
 
-    private boolean InvalidOperation(){
+    protected boolean InvalidOperation(){
         char NextChar;
 
         for(int x = 0; x < equation.length()-1;x++){
@@ -64,15 +71,11 @@ public class Parse {
                     return true;
                 }
             }
-
-
-
         }
-
         return false;
     }
 
-    private boolean InvalidSyntax(){
+    protected boolean InvalidSyntax(){
         for(int x = 0; x < equation.length()-1;x++){
             if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.'
                     || equation.charAt(x)==')' || equation.charAt(x)== '(' || equation.charAt(x) == '/'
@@ -85,20 +88,28 @@ public class Parse {
         return false;
     }
 
-    private void FindNextOperator(){
+    protected void ScanIndex(){
 
         do{
             index_value = equation.charAt(index);
             if(!(Character.isDigit(index_value) || index_value =='.' || index_value == 'π')){
-                if(index_value == '('){
+                if(isFunction()){
+                    FoundFunction();
+                }else if(index_value == '('){
                     FoundOpenBrace();
                 }else if(index_value == ')' ){
                     FoundCloseBrace();
                 }else{
-                    if(index != stop_point || equation.charAt(index-1) == ')')
+                    if(index != stop_point || equation.charAt(index-1) == ')' || Computed_Function)
+                        if(Computed_Function){
+                            Computed_Function = false;
+                            System.out.println("OK found; "+ index_value);
+                        }
                         FoundOperator();
+                    //System.out.println(operator_stack.getsize());
                 }
-            }else {
+            }else{
+                System.out.println(index + " is " + index_value);
                 if(index == equation.length()-1 && !operator_stack.isEmpty()){
                     String number = equation.substring(stop_point, index+1);
                     number_stack.push(parseDouble(number));
@@ -112,12 +123,77 @@ public class Parse {
                         return;
                 }
             }
-
             index++;
         }while(index < equation.length());
+        if(!operator_stack.isEmpty()){
+            while (!operator_stack.isEmpty()){
+                double ndNumber = number_stack.pop();
+                double stNumber = number_stack.pop();
+                number_stack.push(operator_stack.pop().performOperation(stNumber,ndNumber));
+            }
+        }
+
+        System.out.println(number_stack.getsize());
     }
 
-    private void FoundOpenBrace(){
+    protected void FoundFunction(){
+        Func = new Function(name);
+        if(equation.charAt(index) == '('){
+            index++;
+            int start = index;
+
+            FindMatchingCloseBrace();
+            String sub = equation.substring(start, index);
+
+            Func.addOperan(parseDouble(new Parse(sub).calculate()));
+            System.out.println("Here" + index + " in "+ equation.length());
+            number_stack.push(Func.performOperation());
+            stop_point = index;
+            Computed_Function = true;
+            //index--;
+        }else {
+            //Function_is_waiting = true;
+        }
+
+    }
+
+    protected boolean isFunction(){
+        if(equation.length() - index <=3){
+            return false;
+        }
+        if(equation.substring(index, index+3).equalsIgnoreCase("sin")){
+            name = equation.substring(index,index+3);
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("cos")){
+            name = equation.substring(index,index+3);
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("tan")){
+            name = equation.substring(index,index+3);
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("sinh")){
+            name = equation.substring(index,index+4);
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("cosh")){
+            name = equation.substring(index,index+4);
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("tanh")){
+            name = equation.substring(index,index+4);
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("log")){
+            name = equation.substring(index,index+3);
+            index+=3;
+            return true;
+        }
+        return false;
+    }
+
+    protected void FoundOpenBrace(){
         //for (5 + 7) or 7 + (4 - 2)
         // just push in ')'
         if(index == 0 || !Character.isDigit(equation.charAt(index-1))){
@@ -132,7 +208,7 @@ public class Parse {
         stop_point = index+1;
     }
 
-    private void FoundCloseBrace(){
+    protected void FoundCloseBrace(){
         String number = equation.substring(stop_point, index);
         double ndNumber;
         // double stNumber = number_stack.pop();
@@ -164,12 +240,12 @@ public class Parse {
 
         Operator Operation = new Operator(Character.toString(index_value));
 
-        System.out.println(index_value);
+       // System.out.println(index_value);
         if(operator_stack.isEmpty() || Operation.isHigherPriority(operator_stack.top())){
             if(Character.isDigit(equation.charAt(index-1)) || equation.charAt(index-1)=='π'){
                 operator_stack.push(Operation);
                 number_stack.push(parseDouble(number));
-                System.out.println(number_stack.top().toString());
+                //System.out.println(number_stack.top().toString());
             }else
                 operator_stack.push(Operation);
         }else{
@@ -188,11 +264,22 @@ public class Parse {
             }
             operator_stack.push(Operation);
         }
-
        // stop_point = index+1;
     }
 
-    private void removeBlackSpace(){
+    protected void FindMatchingCloseBrace(){
+        int brace = 1;
+        while (brace >=1){
+            if(equation.charAt(index) == '(')
+                brace++;
+            if(equation.charAt(index) == ')')
+                brace--;
+            index++;
+        }
+        index--;
+    }
+
+    protected void removeBlackSpace(){
         int index=0;
 
         do{
@@ -209,10 +296,16 @@ public class Parse {
         }while(index != equation.length());
     }
 
-    private double parseDouble(String input){
+    protected double parseDouble(String input){
         if (input.equals("π")){
             return Math.PI;
         }
         return Double.parseDouble(input);
+    }
+    protected boolean isDigit(char x){
+        if(x == 'π'){
+            return true;
+        }
+        return Character.isDigit(x);
     }
 }
