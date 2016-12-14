@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dusk.calculator.MainActivity"
+    android:theme="@style/MainTheme">
+
+
+    <Button
+        android:text="="
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/equal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="casual"
+        android:onClick="ANSButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_toLeftOf="@+id/one"
+        android:layout_alignLeft="@+id/percent"
+        android:layout_alignStart="@+id/percent" />
+
+    <Button
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/equal"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:id="@+id/zero"
+        android:contentDescription="Zero"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
+
+
+    <Button
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/zero"
+        android:layout_toLeftOf="@+id/two"
+        android:id="@+id/one"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
+
+
+    <Button
+        android:text="4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/one"
+        android:layout_toLeftOf="@+id/five"
+        android:id="@+id/four"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
+
+
+    <Button
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/eight"
+        android:layout_toRightOf="@id/four"
+        android:id="@+id/divide"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nine"
+        android:layout_toRightOf="@+id/divide"
+        android:id="@+id/plus"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/plus"
+        android:layout_alignParentRight="true"
+        android:id="@+id/multiply"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+
+    <Button
+        android:text="7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/four"
+        android:layout_toLeftOf="@+id/eight"
+        android:id="@+id/seven"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"/>
+
+
+    <Button
+        android:text="%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/one"
+        android:id="@+id/percent"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_below="@id/C.B."
+        android:layout_alignLeft="@+id/C.B."
+        android:layout_alignStart="@+id/C.B." />
+
+    <Button
+        android:text="+ / -"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plusORminus"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_toLeftOf="@id/times"
+        android:layout_toStartOf="@+id/times"
+        android:layout_alignBottom="@+id/times"
+        android:layout_above="@id/seven"
+        />
+
+    <Button
+        android:text="("
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/O.B."
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignBottom="@+id/seven"
+        android:layout_toLeftOf="@+id/seven"
+        android:layout_alignLeft="@+id/power"
+        android:layout_alignStart="@+id/power" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/history"
+        android:layout_above="@+id/Display"
+        android:background="@drawable/border"
+        android:layout_alignLeft="@+id/Display"
+        android:layout_alignStart="@+id/Display"
+        android:layout_below="@+id/toolbar"
+        android:keepScreenOn="false"
+        android:isScrollContainer="false"
+        android:layout_toLeftOf="@+id/ans"
+        android:layout_toStartOf="@+id/ans" />
+
+    <Button
+        android:text="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/three"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_alignBaseline="@+id/percent"
+        android:layout_alignBottom="@+id/percent"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:text="8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eight"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_alignBaseline="@+id/O.B."
+        android:layout_alignBottom="@+id/O.B."
+        android:layout_toLeftOf="@+id/nine"
+        android:layout_toStartOf="@+id/nine" />
+
+    <Button
+        android:text="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/five"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_below="@+id/eight"
+        android:layout_toLeftOf="@+id/six"
+        android:layout_toStartOf="@+id/six" />
+
+    <Button
+        android:text="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/two"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_below="@+id/four"
+        android:layout_toRightOf="@+id/four"
+        android:layout_toEndOf="@+id/four" />
+
+    <Button
+        android:text="6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/six"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_above="@+id/three"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nine"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+
+        android:layout_above="@+id/six"
+        android:layout_alignParentRight="true"
+        android:elevation="0dp"
+        android:visibility="visible" />
+
+    <Button
+        android:text="."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dot"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_alignBaseline="@+id/pi"
+        android:layout_alignBottom="@+id/pi"
+        android:layout_toLeftOf="@+id/pi"
+        android:layout_toStartOf="@+id/pi" />
+
+    <Button
+        android:text="ans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ans"
+        android:fontFamily="casual"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_above="@+id/delete"
+        android:layout_alignLeft="@+id/power"
+        android:layout_alignStart="@+id/power"
+        android:layout_toLeftOf="@+id/plusORminus"
+        android:layout_toStartOf="@+id/plusORminus" />
+
+    <Button
+        android:text="DEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete"
+        android:fontFamily="casual"
+        android:onClick="DELOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"
+
+        android:layout_alignBaseline="@+id/power"
+        android:layout_alignBottom="@+id/power"
+        android:layout_toRightOf="@+id/O.B."
+        android:layout_toEndOf="@+id/O.B." />
+
+    <Button
+        android:text="π"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pi"
+        android:fontFamily="casual"
+        android:onClick="NumericButtonOnClickListener"
+        android:layout_below="@+id/two"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="AC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/power"
+        android:fontFamily="casual"
+        android:onClick="ACButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_below="@+id/plusORminus"
+        android:layout_toLeftOf="@+id/seven"
+        android:layout_toStartOf="@+id/seven" />
+
+    <Button
+        android:text=")"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/C.B."
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_below="@+id/eight"
+        android:layout_toLeftOf="@+id/one"
+        android:layout_toStartOf="@+id/one" />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:clickable="true"
+        android:animateLayoutChanges="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/ans"
+        android:layout_toLeftOf="@+id/ans"
+        android:layout_alignTop="@+id/multiply" />
+
+    <Button
+        android:text="*"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/times"
+        android:fontFamily="casual"
+        android:onClick="OperationButtonOnClickListener"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_above="@+id/divide"
+        android:layout_toRightOf="@+id/delete"
+        android:layout_toEndOf="@+id/delete" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Display"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:background="@drawable/border"
+        android:layout_below="@+id/plus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/equal"
+        android:layout_toLeftOf="@+id/equal"
+        android:layout_toStartOf="@+id/equal" />
+
+</RelativeLayout>
