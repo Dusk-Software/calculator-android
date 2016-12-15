@@ -12,12 +12,13 @@ public class Parse {
     private String name;
     protected boolean Computed_Function = false;
     protected Function Func;
+    protected int check = 0;
     protected Stack<Double> number_stack = new Stack<Double>();
     protected Stack<Operator> operator_stack = new Stack<Operator>();
 
     public  Parse(String input){
         equation = input;
-        removeBlackSpace();
+        PreParse();
     }
 
     public Parse(){
@@ -25,11 +26,11 @@ public class Parse {
     }
 
     public String calculate(){
-       // if(isValidEquation()){
+        if(isValidEquation()){
             ScanIndex();
             return number_stack.pop().toString();
-         //}
-        //return "Invalid Entry";
+        }
+        return "Invalid Entry";
     }
 
     protected boolean isValidEquation(){
@@ -63,10 +64,10 @@ public class Parse {
 
         for(int x = 0; x < equation.length()-1;x++){
 
-            if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.' || equation.charAt(x)==')' || equation.charAt(x)=='π')){
+            if(!(isDigit(equation.charAt(x)) || equation.charAt(x)== '.' || equation.charAt(x)==')')){
                 NextChar = equation.charAt(x+1);
                 //protection against (*6) & (9 + / 4) etc
-                if( NextChar != '+' && NextChar != '-' && NextChar !='(' && NextChar != 'π' && !(Character.isDigit(NextChar))){
+                if(NextChar == '*' && NextChar == '/' && NextChar ==')' && !(isDigit(NextChar))){
                     System.out.println("invalid Operation on " + equation.charAt(x) + NextChar);
                     return true;
                 }
@@ -76,15 +77,18 @@ public class Parse {
     }
 
     protected boolean InvalidSyntax(){
-        for(int x = 0; x < equation.length()-1;x++){
-            if(!(Character.isDigit(equation.charAt(x)) || equation.charAt(x)== '.'
-                    || equation.charAt(x)==')' || equation.charAt(x)== '(' || equation.charAt(x) == '/'
-                    || equation.charAt(x)== '*' || equation.charAt(x)== '+' || equation.charAt(x)== '-'
-                    || equation.charAt(x)== '^'|| equation.charAt(x) == 'π')){
-                System.out.println("invalid Syntax on " + equation.charAt(x));
+        for(index = 0; index < equation.length()-1;index++){
+            if(!(isDigit(equation.charAt(index)) || equation.charAt(index)== '.'
+                    || equation.charAt(index)==')' || equation.charAt(index)== '(' || equation.charAt(index) == '/'
+                    || equation.charAt(index)== '*' || equation.charAt(index)== '+' || equation.charAt(index)== '-'
+                    || equation.charAt(index)== '^' || equation.charAt(index)=='%'
+                    || (isFunction() && equation.charAt(index)== '('))){
+                System.out.println("invalid Syntax on " + equation.charAt(index));
+                index = 0;
                 return true;
             }
         }
+        index = 0;
         return false;
     }
 
@@ -92,7 +96,7 @@ public class Parse {
 
         do{
             index_value = equation.charAt(index);
-            if(!(Character.isDigit(index_value) || index_value =='.' || index_value == 'π')){
+            if(!(isDigit(index_value) || index_value =='.')){
                 if(isFunction()){
                     FoundFunction();
                 }else if(index_value == '('){
@@ -100,16 +104,20 @@ public class Parse {
                 }else if(index_value == ')' ){
                     FoundCloseBrace();
                 }else{
-                    if(index != stop_point || equation.charAt(index-1) == ')' || Computed_Function)
+                    if(index != stop_point || (index > 0 && equation.charAt(index-1) == ')')
+                            || Computed_Function || equation.charAt(index+1) == '('){
                         if(Computed_Function){
+
                             Computed_Function = false;
                             System.out.println("OK found; "+ index_value);
                         }
+                        System.out.println("index: "+ index +" " +index_value);
                         FoundOperator();
-                    //System.out.println(operator_stack.getsize());
+                    }
+
                 }
             }else{
-                System.out.println(index + " is " + index_value);
+                //System.out.println(index + " is " + index_value);
                 if(index == equation.length()-1 && !operator_stack.isEmpty()){
                     String number = equation.substring(stop_point, index+1);
                     number_stack.push(parseDouble(number));
@@ -128,15 +136,84 @@ public class Parse {
         if(!operator_stack.isEmpty()){
             while (!operator_stack.isEmpty()){
                 double ndNumber = number_stack.pop();
-                double stNumber = number_stack.pop();
+                double stNumber;
+                if(number_stack.getsize() == 0){
+                    stNumber = 0;
+                }else{
+                    stNumber = number_stack.pop();
+                }
                 number_stack.push(operator_stack.pop().performOperation(stNumber,ndNumber));
             }
+        }else if(stop_point ==0){
+            String number = equation.substring(stop_point, index);
+            number_stack.push(parseDouble(number));
         }
 
         System.out.println(number_stack.getsize());
     }
 
+    protected boolean isFunction(){
+        if(equation.length() - index <=3){
+            return false;
+        }
+        if(equation.substring(index, index+3).equalsIgnoreCase("sin")){
+            name = equation.substring(index,index+3);
+            check = index;
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("cos")){
+            name = equation.substring(index,index+3);
+            check = index;
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("tan")){
+            name = equation.substring(index,index+3);
+            check = index;
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("sinh")){
+            name = equation.substring(index,index+4);
+            check = index;
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("cosh")){
+            name = equation.substring(index,index+4);
+            check = index;
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+4).equalsIgnoreCase("tanh")){
+            name = equation.substring(index,index+4);
+            check = index;
+            index+=4;
+            return true;
+        }else if(equation.substring(index, index+3).equalsIgnoreCase("log")){
+            name = equation.substring(index,index+3);
+            check = index;
+            index+=3;
+            return true;
+        }else if(equation.substring(index, index+2).equalsIgnoreCase("ln")){
+            name = equation.substring(index,index+2);
+            check = index;
+            index+=2;
+            return true;
+        }
+        return false;
+    }
+
     protected void FoundFunction(){
+
+        if(check > 0 && isDigit(equation.charAt(check-1))){
+            String number = equation.substring(stop_point, check);
+            number_stack.push(parseDouble(number));
+            operator_stack.push(new Operator("*"));
+            //operator_stack.push(new Operator(Character.toString(index_value)));
+        }else if(check > 0 && equation.charAt(check-1) == '-'){
+            String number = equation.substring(stop_point, check);
+            number_stack.push(-1.0);
+            operator_stack.push(new Operator("*"));
+            //operator_stack.push(new Operator(Character.toString(index_value)));
+        }
+
         Func = new Function(name);
         if(equation.charAt(index) == '('){
             index++;
@@ -157,49 +234,13 @@ public class Parse {
 
     }
 
-    protected boolean isFunction(){
-        if(equation.length() - index <=3){
-            return false;
-        }
-        if(equation.substring(index, index+3).equalsIgnoreCase("sin")){
-            name = equation.substring(index,index+3);
-            index+=3;
-            return true;
-        }else if(equation.substring(index, index+3).equalsIgnoreCase("cos")){
-            name = equation.substring(index,index+3);
-            index+=3;
-            return true;
-        }else if(equation.substring(index, index+3).equalsIgnoreCase("tan")){
-            name = equation.substring(index,index+3);
-            index+=3;
-            return true;
-        }else if(equation.substring(index, index+4).equalsIgnoreCase("sinh")){
-            name = equation.substring(index,index+4);
-            index+=4;
-            return true;
-        }else if(equation.substring(index, index+4).equalsIgnoreCase("cosh")){
-            name = equation.substring(index,index+4);
-            index+=4;
-            return true;
-        }else if(equation.substring(index, index+4).equalsIgnoreCase("tanh")){
-            name = equation.substring(index,index+4);
-            index+=4;
-            return true;
-        }else if(equation.substring(index, index+3).equalsIgnoreCase("log")){
-            name = equation.substring(index,index+3);
-            index+=3;
-            return true;
-        }
-        return false;
-    }
-
     protected void FoundOpenBrace(){
         //for (5 + 7) or 7 + (4 - 2)
         // just push in ')'
-        if(index == 0 || !Character.isDigit(equation.charAt(index-1))){
+        if(index == 0 || !isDigit(equation.charAt(index-1))){
             operator_stack.push(new Operator(Character.toString(index_value)));
             //for 20 (78 + 9)
-        }else if(Character.isDigit(equation.charAt(index-1))){
+        }else if(isDigit(equation.charAt(index-1))){
             String number = equation.substring(stop_point, index);
             number_stack.push(parseDouble(number));
             operator_stack.push(new Operator("*"));
@@ -212,7 +253,7 @@ public class Parse {
         String number = equation.substring(stop_point, index);
         double ndNumber;
         // double stNumber = number_stack.pop();
-        if(!Character.isDigit(equation.charAt(index-1))){
+        if(!isDigit(equation.charAt(index-1))){
             ndNumber = number_stack.pop();
         }else
             ndNumber = parseDouble(number);
@@ -240,17 +281,39 @@ public class Parse {
 
         Operator Operation = new Operator(Character.toString(index_value));
 
-       // System.out.println(index_value);
-        if(operator_stack.isEmpty() || Operation.isHigherPriority(operator_stack.top())){
-            if(Character.isDigit(equation.charAt(index-1)) || equation.charAt(index-1)=='π'){
+        // System.out.println(index_value);
+        if(operator_stack.isEmpty() || Operation.isHigherPriority(operator_stack.top()) ){
+            if(index > 0 && (isDigit(equation.charAt(index-1)) || equation.charAt(index-1)=='π')){
                 operator_stack.push(Operation);
                 number_stack.push(parseDouble(number));
                 //System.out.println(number_stack.top().toString());
             }else
                 operator_stack.push(Operation);
-        }else{
+        }else if(index > 0 && equation.charAt(index-1) == ')'){
+            double stNumber;
+            double ndNumber;
 
-            double stNumber = number_stack.pop();
+            while(!operator_stack.isEmpty() && operator_stack.top().isHigherPriority(Operation)){
+                ndNumber = number_stack.pop();
+
+                if(number_stack.getsize() == 0){
+                    stNumber = 0;
+                }else{
+                    stNumber = number_stack.pop();
+                }
+                Operator preOperation = operator_stack.pop();
+
+                number_stack.push(preOperation.performOperation(stNumber,ndNumber));
+            }
+            operator_stack.push(Operation);
+        }else{
+            double stNumber;
+            if(number_stack.getsize() == 0){
+                stNumber = 0;
+            }else{
+                stNumber = number_stack.pop();
+            }
+
             double ndNumber = parseDouble(number);
             Operator preOperation = operator_stack.pop();
 
@@ -264,7 +327,7 @@ public class Parse {
             }
             operator_stack.push(Operation);
         }
-       // stop_point = index+1;
+        // stop_point = index+1;
     }
 
     protected void FindMatchingCloseBrace(){
@@ -279,20 +342,31 @@ public class Parse {
         index--;
     }
 
-    protected void removeBlackSpace(){
+    protected void PreParse(){
         int index=0;
-
         do{
             if(equation.charAt(index) == ' '){
                 equation = equation.substring(0,index) + equation.substring(index+1,equation.length());
                 index--;
             }
+            index++;
+        }while(index != equation.length());
+        index = 0;
+        do{
             if(index+1 != equation.length() && equation.charAt(index)=='+' && (equation.charAt(index+1)=='-' || equation.charAt(index+1)=='+')){
                 equation = equation.substring(0,index) + equation.substring(index+1,equation.length());
                 index--;
+            }if(index+1 != equation.length() && equation.charAt(index)=='-' && equation.charAt(index+1)=='-'){
+                equation = equation.substring(0,index) +"+" +equation.substring(index+2,equation.length());
+                index--;
+            }if(index+1 != equation.length() && equation.charAt(index)=='-'&& equation.charAt(index+1)=='+'){
+                equation = equation.substring(0,index+1) + equation.substring(index+2,equation.length());
+                index--;
+            }if(equation.charAt(index)=='%' && equation.substring(index+1, index+3).equalsIgnoreCase("of")){
+                equation = equation.substring(0,index+1) + equation.substring(index+3,equation.length());
             }
-
             index++;
+
         }while(index != equation.length());
     }
 
@@ -300,12 +374,20 @@ public class Parse {
         if (input.equals("π")){
             return Math.PI;
         }
+        if(input.equals("e")){
+            return Math.E;
+        }
         return Double.parseDouble(input);
     }
+
     protected boolean isDigit(char x){
         if(x == 'π'){
+            return true;
+        }
+        if(x == 'e'){
             return true;
         }
         return Character.isDigit(x);
     }
 }
+

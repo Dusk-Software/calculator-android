@@ -32,6 +32,9 @@ public class Function extends Operator{
         }else if(input.equalsIgnoreCase("log")){
             noOfOperan = 1;
             Operans = new double[noOfOperan];
+        }else if(input.equalsIgnoreCase("ln")){
+            noOfOperan = 1;
+            Operans = new double[noOfOperan];
         }
         name = input;
     }
@@ -56,6 +59,8 @@ public class Function extends Operator{
         }else if(name.equalsIgnoreCase("tanh")){
             return Math.tanh(Operans[0]);
         }else if(name.equalsIgnoreCase("log")){
+            return Math.log10(Operans[0]);
+        }else if(name.equalsIgnoreCase("ln")){
             return Math.log(Operans[0]);
         }
         size--;
